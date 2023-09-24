@@ -32,8 +32,8 @@ async function getMediaStream() {
         localVideo.srcObject = mediaStream;
         const localVideo1 = document.getElementById('localVideo1');
         localVideo1.srcObject = mediaStream;
-        const videoTracks = mediaStream.getVideoTracks();
-        console.log('Number of video tracks:', videoTracks.length);
+        // const videoTracks = mediaStream.getVideoTracks();
+        // console.log('Number of video tracks:', videoTracks.length);
         localVideo.play();  // Start playing the video
         localVideo1.play();  // Start playing the video
     } catch (error) {
@@ -44,19 +44,24 @@ async function getMediaStream() {
 function initializeVideoJS() {
     const player = videojs('localVideo');  // Use the ID of the video element
     player.muted(true);
-    player.vr({ projection: '360', forceCardboard: true });
+    player.vr({ projection: 'AUTO', forceCardboard: true });
+    player.play();
 
     const player1 = videojs('localVideo1');  // Use the ID of the video element
     player1.muted(true);
-    player1.vr({ projection: '360', forceCardboard: true });
+    player1.vr({ projection: 'AUTO', forceCardboard: true });
+    player1.play();
 }
 
 function startCameraAndPlay() {
     getMediaStream()
         .then(() => {
             initializeVideoJS();
-            const player = videojs('localVideo');
-            player.play();  // Programmatic play after initializing and setting the stream.
+            // const player = videojs('localVideo');
+            // player.play();  // Programmatic play after initializing and setting the stream.
+
+            // const player1 = videojs('localVideo1');
+            // player1.play();  // Programmatic play after initializing and setting the stream.
         })
         .catch(error => {
             console.error("Error accessing camera:", error);
