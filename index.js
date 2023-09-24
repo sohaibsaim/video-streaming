@@ -56,7 +56,7 @@ function initializeVideoJS() {
 function startCameraAndPlay() {
     getMediaStream()
         .then(() => {
-            // initializeVideoJS();s
+            initializeVideoJS();
             // const player = videojs('localVideo');
             // player.play();  // Programmatic play after initializing and setting the stream.
 
