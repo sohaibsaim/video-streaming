@@ -1,6 +1,8 @@
+const videoElement = document.getElementById('outputVideo');
 let mediaStream; // Declare as Global
 
 // Enumerate cameras and populate dropdown
+console.log("start");
 function populateCameraDropdown() {
     return navigator.mediaDevices.enumerateDevices()
         .then(devices => {
@@ -14,6 +16,7 @@ function populateCameraDropdown() {
         });
 }
 
+console.log("Before MEdia Stream");
 // Capture video from the selected camera and display in localVideo element
 async function getMediaStream() {
     const cameraList = document.getElementById('camera-list');
@@ -30,26 +33,52 @@ async function getMediaStream() {
         const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
         const localVideo = document.getElementById('localVideo');
         localVideo.srcObject = mediaStream;
-        const localVideo1 = document.getElementById('localVideo1');
-        localVideo1.srcObject = mediaStream;
         const videoTracks = mediaStream.getVideoTracks();
         console.log('Number of video tracks:', videoTracks.length);
         localVideo.play();  // Start playing the video
-        localVideo1.play();  // Start playing the video
     } catch (error) {
         console.error("Error accessing camera:", error);
     }
+}
+
+// videoElement.srcObject = mediaStream;
+
+console.log("Before initializeVideoJS");
+// Initialize video.js player
+function OinitializeVideoJS() {
+    const player = videojs('outputVideo');
+    player.vr({ projection: '360', forceCardboard: false });
+    player.src({
+        type: 'application/x-mpegURL',
+        src: mediaStream
+    });
+    player.play();
 }
 
 function initializeVideoJS() {
     const player = videojs('localVideo');  // Use the ID of the video element
     player.muted(true);
     player.vr({ projection: '360', forceCardboard: true });
-
-    const player1 = videojs('localVideo1');  // Use the ID of the video element
-    player1.muted(true);
-    player1.vr({ projection: '360', forceCardboard: true });
 }
+
+console.log("Before getElementById('start-camera')");
+// Event listener for the Start Camera button
+document.getElementById('start-camera').addEventListener('click', () => {
+    getMediaStream()
+        .then(() => {
+            initializeVideoJS();
+        })
+        .catch(error => {
+            console.error("Error accessing camera:", error);
+        });
+});
+
+console.log("Before populateCameraDropdown");
+// Initially populate the camera dropdown
+populateCameraDropdown()
+    .catch(error => {
+        console.error("Error enumerating devices:", error);
+    });
 
 function startCameraAndPlay() {
     getMediaStream()
@@ -62,10 +91,4 @@ function startCameraAndPlay() {
             console.error("Error accessing camera:", error);
         });
 }
-
-// Initially populate the camera dropdown
-populateCameraDropdown()
-    .catch(error => {
-        console.error("Error enumerating devices:", error);
-    });
 
