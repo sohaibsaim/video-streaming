@@ -44,19 +44,19 @@ async function getMediaStream() {
 function initializeVideoJS() {
     const player = videojs('localVideo');  // Use the ID of the video element
     player.muted(true);
-    // player.vr({ projection: 'AUTO', forceCardboard: true });
+    player.vr({ projection: 'AUTO', forceCardboard: true });
     player.play();
 
     const player1 = videojs('localVideo1');  // Use the ID of the video element
     player1.muted(true);
-    // player1.vr({ projection: 'AUTO', forceCardboard: true });
+    player1.vr({ projection: 'AUTO', forceCardboard: true });
     player1.play();
 }
 
 function startCameraAndPlay() {
     getMediaStream()
         .then(() => {
-            initializeVideoJS();
+            // initializeVideoJS();s
             // const player = videojs('localVideo');
             // player.play();  // Programmatic play after initializing and setting the stream.
 
