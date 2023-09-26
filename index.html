@@ -5,80 +5,49 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Opic3D4E Server Process and Local Play - Simple</title>
-    <style>
-        .icon-button {
-            position: absolute;
-            top: auto;
-            /* Added this line */
-            bottom: 10px;
-            /* Added this line */
-            right: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            border-radius: 50%;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-            background-color: transparent;
-            /* Make the background transparent */
-            border: none;
-            /* Remove any border */
-            outline: none;
-            /* Remove focus outline */
-        }
-
-        #cardboardButton {
-            right: 10px;
-            bottom: 10px;
-            /* adjust this value as needed */
-        }
-
-        video:-webkit-full-screen {
-            width: 100%;
-            height: 100%;
-        }
-
-        video:fullscreen {
-            width: 100%;
-            height: 100%;
-        }
-
-        video {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-        }
-
-        #localVideo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .container {
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-        }
-    </style>
 </head>
 
 <body>
-    <select id="camera-list"></select>
-    <button id="start-camera">Go</button>
-
-    <div class="container" style="position: relative; width: 640px; height: 480px;">
-        <!-- Camera Feed (Regular Video Element) -->
-        <video id="localVideo" width="320" height="240" playsinline autoplay muted></video>
-
-        <!-- Create the carboard icon button (iow) picture in picture element. -->
-        <button id="cardboardButton" class="icon-button">
-            <img src="./cbd-vr.svg" alt="Cardboard VR" width="20" height="20">
+    <div id="video-container">
+        <video id="webcamVideo" autoplay></video>
+        <button id="btn" onclick="fullscreen()">
+            View Fullscreen!
         </button>
     </div>
-
-    <script src="process.js"></script>
-
 </body>
+
+<script>
+
+    async function startWebcam() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const videoElement = document.getElementById('webcamVideo');
+            videoElement.srcObject = stream;
+        } catch (error) {
+            console.error('Error accessing webcam:', error);
+        }
+    }
+
+    startWebcam();
+    
+    function makeLandscape() {
+        // this works on android, not iOS
+        if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock('landscape');
+        }
+    }
+
+    function fullscreen() {
+        var element = document.getElementById('video-container');
+        if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+            makeLandscape();
+        } else if (element.webkitRequestFullScreen) {
+            element.webkitRequestFullScreen();
+            makeLandscape();
+        }
+
+    }
+</script>
 
 </html>
