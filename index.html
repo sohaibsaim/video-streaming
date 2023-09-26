@@ -24,6 +24,8 @@
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             const videoElement = document.getElementById('webcamVideo');
             videoElement.srcObject = stream;
+            videoElement.play();
+            
         } catch (error) {
             console.error('Error accessing webcam:', error);
         }
@@ -32,9 +34,11 @@
     startWebcam();
 
     function makeLandscape() {
-        // this works on android, not iOS
-        if (screen.orientation && screen.orientation.lock) {
-            screen.orientation.lock('landscape');
+        if (screen.orientation.type !== 'landscape-primary') {
+            // this works on android, not iOS
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape');
+            }
         }
     }
 
