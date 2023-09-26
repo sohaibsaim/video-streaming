@@ -1,84 +1,35 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Opic3D4E Server Process and Local Play - Simple</title>
-    <style>
-        .icon-button {
-            position: absolute;
-            top: auto;
-            /* Added this line */
-            bottom: 10px;
-            /* Added this line */
-            right: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            border-radius: 50%;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-            background-color: transparent;
-            /* Make the background transparent */
-            border: none;
-            /* Remove any border */
-            outline: none;
-            /* Remove focus outline */
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Streaming</title>
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet">
+    <!-- Video.js script -->
+    <script src="https://vjs.zencdn.net/7.11.4/video.js"></script>
 
-        #cardboardButton {
-            right: 10px;
-            bottom: 10px;
-            /* adjust this value as needed */
-        }
+    <!-- Three.js (required for Videojs-VR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r116/three.min.js"></script>
 
-        video:-webkit-full-screen {
-            width: 100%;
-            height: 100%;
-        }
+    <!-- Videojs-VR plugin -->
+    <script src="https://unpkg.com/videojs-vr@1.8.0/dist/videojs-vr.js"></script>
 
-        video:fullscreen {
-            width: 100%;
-            height: 100%;
-        }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-cordova/0.1.27-alpha/ng-cordova.min.js"></script>
 
-        video {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-        }
-
-        #localVideo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .container {
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-        }
-    </style>
 </head>
 
 <body>
-    <select id="camera-list"></select>
-    <button id="start-camera">Go</button>
-
-    <div class="container" style="position: relative; width: 640px; height: 480px;">
-        <!-- Camera Feed (Regular Video Element) -->
-        <video id="localVideo" width="320" height="240" playsinline autoplay muted></video>
-
-        <!-- Create the carboard icon button (iow) picture in picture element. -->
-        <button id="cardboardButton" class="icon-button">
-            <img src="./cbd-vr.svg" alt="Cardboard VR" width="20" height="20">
-        </button>
-    </div>
-
-    <script src="process.js"></script>
-
+    <video id="localVideo" class="video-js vjs-default-skin" controls width="640" height="360" preload="auto">
+        <!-- Add your video sources here if you have any static sources -->
+    </video>
 </body>
+
+<script>
+    navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+        const videoElement = document.getElementById('localVideo');
+        videoElement.srcObject = stream;
+
+    });
+</script>
 
 </html>
