@@ -12,6 +12,7 @@
 // element.
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 console.log("start");
+alert(screen.orientation.type);
 
 const localVideo = document.getElementById('localVideo');
 
