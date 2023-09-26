@@ -29,7 +29,7 @@
     }
 
     startWebcam();
-    
+
     function makeLandscape() {
         // this works on android, not iOS
         if (screen.orientation && screen.orientation.lock) {
@@ -42,11 +42,25 @@
         if (element.mozRequestFullScreen) {
             element.mozRequestFullScreen();
             makeLandscape();
+            toggleFullScreen();
         } else if (element.webkitRequestFullScreen) {
             element.webkitRequestFullScreen();
             makeLandscape();
+            toggleFullScreen();
         }
 
+    }
+
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            videoElement.requestFullscreen().catch(err => {
+                console.error('Error attempting to enable full-screen mode:', err);
+            });
+        } else {
+            document.exitFullscreen().catch(err => {
+                console.error('Error attempting to exit full-screen mode:', err);
+            });
+        }
     }
 </script>
 
