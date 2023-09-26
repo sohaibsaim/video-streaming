@@ -109,7 +109,7 @@ cardboardButton.addEventListener('touchend', function (event) {
 function toggleFullscreen(videoElement) {
     if (!document.fullscreenElement) {
         // If not in fullscreen, try to enter fullscreen in landscape mode.
-        if (screen.orientation && screen.orientation.lock) {
+        if (screen.orientation) {
             screen.orientation.lock('landscape').then(() => {
                 videoElement.requestFullscreen();
             }).catch(error => {
