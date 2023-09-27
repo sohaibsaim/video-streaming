@@ -67,8 +67,8 @@ function getMobileOperatingSystem() {
 }
 
 
-if (getMobileOperatingSystem() === 'iOS') {
-    alert('for better user experience please use it in potrait mode');
-}
+// if (getMobileOperatingSystem() === 'iOS') {
+//     alert('for better user experience please use it in potrait mode');
+// }
 
 startWebcam();
