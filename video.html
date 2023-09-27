@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0 ;" charset="utf-8">    
+    
+<body>
+
+<title>MORIKOBOSHI - 公式ウェブサイト・Official Website</title>
+
+<div class="video-container">
+<video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" autoplay loop muted playsinline style="z-index: 100px; overflow: hidden; object-fit: contain;"></video></div>
+ 
+<div class="relative">
+<p style="text-align: left; font-family: sans-serif; overflow: hidden; color: transparent; opacity: .45;"><a href="Home.html" style="text-decoration:none; color: black; text-shadow:1px 1px 0 darkgray,-1px 1px 0 darkgray,1px -1px 0 darkgray,-1px -1px 0 darkgray;">盛りこぼし</a>
+</div>
+
+<div class="absolute">
+<p style="text-align: left; font-family: sans-serif; overflow: hidden; color: transparent; opacity: .8;"><a href="Home_English.html" style="text-decoration:none; color: black; opacity: .8; text-shadow:.5px .5px 0 #FFFFFF,-.5px .5px 0 #FFFFFF,.5px -.5px 0 #FFFFFF,-.5px -.5px 0 #FFFFFF;">MORIKOBOSHI</a>
+</div>
+    
+<div class="home_page">   
+<p style="text-align: center; font-size: 40px; font-family: sans-serif; overflow: hidden;"><a href="Website_Home_Page.html" style="text-decoration:none; color: white; text-shadow:1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000;"><b>日本語</b></a> |  <a href="Website_Home_Page_English.html" style="text-decoration:none; color: white; text-shadow:1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000;"><b>English</b></a></p></div>   
+    
+<style>.relative {
+    font-size: 25px;
+  }
+
+  .absolute {
+    font-size: 13px;
+  }
+
+  @media (max-width: 1130px) and (min-width: 280px) {
+    .relative {
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 1130px) and (min-width: 280px) {
+    .absolute {
+      font-size: 6px;
+    }
+  }
+
+  .video-container {
+    position: fixed;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .video-container video {
+    /* Make video to at least 100% wide and tall */
+
+    /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+    width: 100%;
+    height: 100%;
+
+    /* Center the video */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 1130px) and (min-width: 280px) and (orientation: landscape) {
+    .video {
+      object-fit: cover;
+    }
+  }
+
+  .relative {
+    position: absolute;
+    top: -10px;
+    left: -13px;
+  }
+
+  @media (max-width: 1130px) and (min-width: 280px) {
+    .relative {
+      position: absolute;
+      top: -15px;
+      left: -30px;
+    }
+  }
+
+  .absolute {
+    position: absolute;
+    left: 28px;
+    top: 28px;
+  }
+
+  @media (max-width: 1130px) and (min-width: 280px) {
+    .absolute {
+      position: absolute;
+      top: 4px;
+      left: -15px;
+    }
+  }
+
+  video {
+    position: fixed;
+    text-align: center;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    object-fit: cover !important;
+  }
+
+  p {
+    color: white;
+    text-decoration: none;
+    color: white;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
+      -1px -1px 0 #000;
+    font-size: 400%;
+    margin: 50px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .home_page {
+    position: fixed;
+    top: 520px;
+    left: 410px;
+  }
+
+  @media (max-width: 1130px) and (min-width: 280px) {
+    .home_page {
+      position: fixed;
+      top: 470px;
+      left: -08px;
+    }
+  }
+
+  @media (max-width: 1130px) and (min-width: 280px) and (orientation: landscape) {
+    .home_page {
+      position: fixed;
+      top: 180px;
+      left: 160px;
+      font-size: 20px;
+    }
+  }
+    
+</style>    
+    
+</body>
+</html>
