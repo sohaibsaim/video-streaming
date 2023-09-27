@@ -3,7 +3,7 @@ async function startWebcam() {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         const videoElement = document.getElementById('webcamVideo');
         videoElement.srcObject = stream;
-        videoElement.play();
+        // videoElement.play();
 
     } catch (error) {
         console.error('Error accessing webcam:', error);
