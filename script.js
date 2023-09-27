@@ -1,8 +1,21 @@
 async function startWebcam() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
         const videoElement = document.getElementById('webcamVideo');
         videoElement.srcObject = stream;
+        
+        var player = videojs('webcamVideo');
+
+        player.landscapeFullscreen({
+            fullscreen: {
+                enterOnRotate: true,
+                alwaysInLandscapeMode: true,
+                iOS: true
+            }
+        });
+
+        
         // videoElement.play();
 
     } catch (error) {
@@ -22,27 +35,22 @@ function makeLandscape() {
 function fullscreen() {
     var elem = document.getElementById('webcamVideo');
     //# for most browsers
-    if (elem.requestFullscreen) 
-    { elem.requestFullscreen(); } 
-    
+    if (elem.requestFullscreen) { elem.requestFullscreen(); }
+
     //# for Safari (older versions)
-    else if (elem.webkitRequestFullscreen) 
-    { elem.webkitRequestFullscreen(); }
-    
+    else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+
     //# for Safari (newer versions)
-    else if (elem.webkitEnterFullscreen) 
-    { elem.webkitEnterFullscreen(); }
-    
+    else if (elem.webkitEnterFullscreen) { elem.webkitEnterFullscreen(); }
+
     //# for Safari iPhone (where only the Video tag itself can be fullscreen)
-    else if (elem.children[0].webkitEnterFullscreen) 
-    { 
+    else if (elem.children[0].webkitEnterFullscreen) {
         elem.children[0].webkitEnterFullscreen();
         //toggle_controls(); //# your own function to show/hide iOS media controls
     }
-    
+
     //# for Internet Explorer 11
-    else if (elem.msRequestFullscreen) 
-    { elem.msRequestFullscreen(); }
+    else if (elem.msRequestFullscreen) { elem.msRequestFullscreen(); }
     // var element = document.getElementById('webcamVideo');
     // if (element.mozRequestFullScreen) {
     //     element.mozRequestFullScreen();
