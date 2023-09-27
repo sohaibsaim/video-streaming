@@ -5,16 +5,10 @@ async function startWebcam() {
         videoElement.srcObject = stream;
         videoElement.play();
 
-        if (getMobileOperatingSystem() === 'iOS') {
-            alert('for better user experience please use it in potrait mode');
-        }
-
     } catch (error) {
         console.error('Error accessing webcam:', error);
     }
 }
-
-startWebcam();
 
 function makeLandscape() {
     if (screen.orientation.type !== 'landscape-primary') {
@@ -71,3 +65,10 @@ function getMobileOperatingSystem() {
 
     return "unknown";
 }
+
+
+if (getMobileOperatingSystem() === 'iOS') {
+    alert('for better user experience please use it in potrait mode');
+}
+
+startWebcam();
