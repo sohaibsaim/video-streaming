@@ -12,7 +12,7 @@
             padding-top: 5rem;
         }
 
-        #video-container {
+        /* #video-container {
             width: 100vw;
             height: 100vh;
             overflow: hidden;
@@ -23,12 +23,21 @@
             height: 100%;
 
             object-fit: cover;
-        }
+        } */
 
-        video:-webkit-full-screen {
+        .videoContainer:fullscreen,
+        .videoContainer:-ms-fullscreen,
+        .videoContainer:-moz-full-screen,
+        .videoContainer:-webkit-full-screen {
             width: 100%;
             height: 100%;
-            max-height: 100%;
+        }
+
+        video:-webkit-full-screen::-webkit-media-controls-panel,
+        video:-webkit-full-screen::-webkit-media-controls,
+        video:-webkit-full-screen::-webkit-media-text-track-container {
+            display: none !important;
+            opacity: 0;
         }
     </style>
 </head>
@@ -41,7 +50,7 @@
     </nav>
     <main role="main" class="container">
         <div class="d-flex mt-5 align-items-center justify-content-center">
-            <div id="video-container">
+            <div class=".video-container">
                 <!-- <video id="webcamVideo" autoplay playsinline controls="true" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"></video> -->
                 <video id="webcamVideo" autoplay playsinline controls="true"></video>
             </div>
