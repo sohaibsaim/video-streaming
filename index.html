@@ -16,58 +16,6 @@
         </button>
     </div>
 </body>
-
-<script>
-
-    async function startWebcam() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            const videoElement = document.getElementById('webcamVideo');
-            videoElement.srcObject = stream;
-            videoElement.play();
-            
-        } catch (error) {
-            console.error('Error accessing webcam:', error);
-        }
-    }
-
-    startWebcam();
-
-    function makeLandscape() {
-        if (screen.orientation.type !== 'landscape-primary') {
-            // this works on android, not iOS
-            if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('landscape');
-            }
-        }
-    }
-
-    function fullscreen() {
-        var element = document.getElementById('webcamVideo');
-        if (element.mozRequestFullScreen) {
-            element.mozRequestFullScreen();
-            makeLandscape();
-            toggleFullScreen();
-        } else if (element.webkitRequestFullScreen) {
-            element.webkitRequestFullScreen();
-            makeLandscape();
-            toggleFullScreen();
-        }
-
-    }
-
-    function toggleFullScreen() {
-        if (!document.fullscreenElement) {
-            let videoElement = document.getElementById('webcamVideo');
-            videoElement.requestFullscreen().catch(err => {
-                console.error('Error attempting to enable full-screen mode:', err);
-            });
-        } else {
-            document.exitFullscreen().catch(err => {
-                console.error('Error attempting to exit full-screen mode:', err);
-            });
-        }
-    }
-</script>
+<script src="script.js"></script>
 
 </html>
