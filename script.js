@@ -1,21 +1,8 @@
 async function startWebcam() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-
         const videoElement = document.getElementById('webcamVideo');
         videoElement.srcObject = stream;
-        
-        var player = videojs('webcamVideo');
-
-        player.landscapeFullscreen({
-            fullscreen: {
-                enterOnRotate: true,
-                alwaysInLandscapeMode: true,
-                iOS: true
-            }
-        });
-
-        
         // videoElement.play();
 
     } catch (error) {
@@ -26,8 +13,10 @@ async function startWebcam() {
 function makeLandscape() {
     if (screen.orientation.type !== 'landscape-primary') {
         // this works on android, not iOS
-        if (screen.orientation && screen.orientation.lock) {
-            screen.orientation.lock('landscape');
+        if (screen.orientation.lock) {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape');
+            }
         }
     }
 }
@@ -51,6 +40,8 @@ function fullscreen() {
 
     //# for Internet Explorer 11
     else if (elem.msRequestFullscreen) { elem.msRequestFullscreen(); }
+
+    makeLandscape();
     // var element = document.getElementById('webcamVideo');
     // if (element.mozRequestFullScreen) {
     //     element.mozRequestFullScreen();
